@@ -1,0 +1,33 @@
+/**
+ * @name CDNWatcher
+ * @version 1.0.0b
+ * @copyright Alonso R. 2019 All rights reserved.
+ * @license MIT
+ * @author Maestre3D
+ * @description SCSS Main styling
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Poppins', sans-serif; }
+
+a { text-decoration: none; }
+
+.container {
+    display: flex;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+
+    flex-flow: column;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 0 30px;
+}
+
+/* Material Design replacement */
+
+.mat-list-item, .mat-button, .mat-toolbar > *, .mat-card > * { font-family: 'Poppins', sans-serif !important; }

@@ -1,7 +1,7 @@
 /**
- * @name Modhub-watcher
+ * @name CDNWatcher
  * @version 1.0.0b
- * @copyright Modding Agency (Grand Theft Auto 5 Modding). 2019 All rights reserved.
+ * @copyright Alonso R. 2019 All rights reserved.
  * @license MIT
  * @author Maestre3D
  * @description Root page module
@@ -12,13 +12,15 @@ import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './root/pages.component';
+import { MaterialBundleModule } from '../common/modules/material.module';
 
 
 @NgModule({
   declarations: [PagesComponent],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    MaterialBundleModule
   ]
 })
 export class PagesModule { }

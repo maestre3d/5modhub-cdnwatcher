@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "modhub-watcher": {
+    "cdnwatcher": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/modhub-watcher",
+            "outputPath": "dist/cdnwatcher",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -29,7 +29,8 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
+              "src/assets/scss/styles.scss",
+              "src/assets/scss/theme.scss"
             ],
             "scripts": []
           },
@@ -68,18 +69,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "modhub-watcher:build"
+            "browserTarget": "cdnwatcher:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "modhub-watcher:build:production"
+              "browserTarget": "cdnwatcher:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "modhub-watcher:build"
+            "browserTarget": "cdnwatcher:build"
           }
         },
         "test": {
@@ -95,7 +96,8 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
+              "src/assets/scss/styles.scss",
+              "src/assets/scss/theme.scss"
             ],
             "scripts": []
           }
@@ -117,16 +119,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "modhub-watcher:serve"
+            "devServerTarget": "cdnwatcher:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "modhub-watcher:serve:production"
+              "devServerTarget": "cdnwatcher:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "modhub-watcher"
+  "defaultProject": "cdnwatcher"
 }

@@ -1,10 +1,10 @@
 /**
- * @name Modhub-watcher
+ * @name CDNWatcher
  * @version 1.0.0b
- * @copyright Modding Agency (Grand Theft Auto 5 Modding). 2019 All rights reserved.
+ * @copyright Alonso R. 2019 All rights reserved.
  * @license MIT
  * @author Maestre3D
- * @description Material bundler
+ * @description Material Design bundler
  */
 
 import { NgModule } from '@angular/core';
@@ -38,4 +38,4 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ]
 })
 
-export class MaterialModule {}
+export class MaterialBundleModule {}

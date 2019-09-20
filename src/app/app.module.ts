@@ -1,3 +1,12 @@
+/**
+ * @name CDNWatcher
+ * @version 1.0.0b
+ * @copyright Alonso R. 2019 All rights reserved.
+ * @license MIT
+ * @author Maestre3D
+ * @description Root module
+ */
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 

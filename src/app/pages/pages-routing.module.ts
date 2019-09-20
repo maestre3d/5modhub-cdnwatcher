@@ -1,14 +1,14 @@
 /**
- * @name Modhub-watcher
+ * @name CDNWatcher
  * @version 1.0.0b
- * @copyright Modding Agency (Grand Theft Auto 5 Modding). 2019 All rights reserved.
+ * @copyright Alonso R. 2019 All rights reserved.
  * @license MIT
  * @author Maestre3D
  * @description Root page routing module
  */
 
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { PAGES_ROUTES } from './pages.routes';
 
 @NgModule({

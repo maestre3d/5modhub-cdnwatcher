@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="header"><h1>Home</h1></div>
+    <div class="actions-container">
+        <a [routerLink]="[ '/cdn' ]">
+            <mat-card class="action-card mat-elevation-z4">
+                <mat-card-header>
+                    <mat-card-title><b>CDN Origin Servers</b></mat-card-title>
+                    <mat-card-subtitle>Manage your origin servers.</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="assets/img/home/select_1.svg" alt="CDN Origin Servers">
+                <mat-card-content></mat-card-content>
+                <mat-card-actions style="text-align: end;">
+                    <button mat-flat-button color="primary">Check servers</button>
+                </mat-card-actions>
+            </mat-card>
+        </a>
+        <a [routerLink]="[ '/bucket' ]">
+            <mat-card class="action-card mat-elevation-z4">
+                <mat-card-header>
+                    <mat-card-title><b>File Manager</b></mat-card-title>
+                    <mat-card-subtitle>I/O operations for every bucket.</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="assets/img/home/file_1.svg" alt="File manager">
+                <mat-card-content></mat-card-content>
+                <mat-card-actions style="text-align: end;">
+                    <button mat-flat-button color="primary">Check files</button>
+                </mat-card-actions>
+            </mat-card>
+        </a>
+        <a [routerLink]="[ '/user' ]">
+            <mat-card class="action-card mat-elevation-z4">
+                <mat-card-header>
+                    <mat-card-title><b>IAM Identity & Access Manager</b></mat-card-title>
+                    <mat-card-subtitle>Control and manage users.</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="assets/img/home/users_1.svg" alt="Identity manager">
+                <mat-card-content></mat-card-content>
+                <mat-card-actions style="text-align: end;">
+                    <button mat-flat-button color="primary">Check identities</button>
+                </mat-card-actions>
+            </mat-card>
+        </a>
+        <a [routerLink]="[ '/options' ]">
+            <mat-card class="action-card mat-elevation-z4">
+                <mat-card-header>
+                    <mat-card-title><b>Configure {{title}}</b></mat-card-title>
+                    <mat-card-subtitle>Update your preferences.</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="assets/img/home/options_1.svg" alt="Options">
+                <mat-card-content></mat-card-content>
+                <mat-card-actions style="text-align: end;">
+                    <button mat-flat-button color="primary">Check options</button>
+                </mat-card-actions>
+            </mat-card>
+        </a>
+    </div>         
+</div>

@@ -1,0 +1,35 @@
+.container {
+    .actions-container {
+        display: flex;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        width: 100%;
+    
+        flex-flow: row wrap;
+    
+        justify-content: center;
+        align-items: center;
+        
+        .action-card {
+            margin: 20px;
+            max-width: 400px;
+            max-height: 550px;
+    
+            img {
+                max-height: 300px;
+                max-width: 432px;
+            }
+        }
+    }
+}
+
+@media (min-width: 568px) {
+    .container {
+        .action-card{
+            img {
+                width: 432px;
+            }
+        }
+    }
+}

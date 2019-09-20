@@ -1,3 +1,12 @@
+/**
+ * @name CDNWatcher
+ * @version 1.0.0b
+ * @copyright Alonso R. 2019 All rights reserved.
+ * @license MIT
+ * @author Maestre3D
+ * @description Root routing module
+ */
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -10,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'notfound',
-    loadChildren: () => import('./shared/notfound/notfound.module').then(module => module.NotfoundModule)
+    loadChildren: () => import('src/app/shared/notfound/notfound.module').then(module => module.NotfoundModule)
   },
   {
     path: '**',
@@ -21,7 +30,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    useHash: true
+    useHash: false
   })],
   exports: [RouterModule]
 })
