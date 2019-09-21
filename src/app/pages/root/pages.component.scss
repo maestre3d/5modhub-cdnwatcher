@@ -1,3 +1,5 @@
+@import 'src/assets/scss/theme.scss';
+
 .main-container {
     display: flex;
     flex-direction: column;
@@ -30,6 +32,15 @@ h1.app-name {
     flex: 1 0 auto;
 }
 
+.item {
+    color: $secondary !important;
+}
+
 .nav-icon {
     margin: 15px;
+}
+
+.active-link {
+    color: $accent !important;
+    font-weight: 700;
 }

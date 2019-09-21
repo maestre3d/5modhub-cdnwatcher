@@ -3,9 +3,16 @@
 
 $app-primary: mat-palette($mat-blue, A700, A700, A700);
 $app-accent:  mat-palette($mat-orange, A400, A400, A700);
+$app-secondary: mat-palette($mat-blue-grey);
 
 $app-warn: mat-palette($mat-red);
 
 $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 
+
 @include angular-material-theme($app-theme);
+
+$primary: mat-color($app-primary);
+$accent: mat-color($app-accent);
+$secondary: mat-color($app-secondary);
+$warn: mat-color($app-warn);

@@ -9,12 +9,13 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './common/guards/auth/auth.guard';
 
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
+    canActivate: [ AuthGuard ],
     loadChildren: () => import('./pages/pages.module').then(module => module.PagesModule)
   },
   {

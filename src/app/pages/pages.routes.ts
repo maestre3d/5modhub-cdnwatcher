@@ -17,9 +17,22 @@ const AppRouting: Routes = [
             {
                 path: '',
                 loadChildren: () => import('src/app/pages/home/home.module').then(module => module.HomeModule)
+            },
+            {
+                path: 'cdn',
+                loadChildren: () => import('src/app/pages/cdn/cdn.module').then(module => module.CdnModule)
+            },
+            {
+                path: 'iam',
+                loadChildren: () => import('src/app/pages/iam/iam.module').then(module => module.IamModule)
+            },
+            {
+                path: 'notfound',
+                loadChildren: () => import('src/app/shared/notfound/notfound.module').then(module => module.NotfoundModule)
             }
         ]
-    }
+    },
+    { path: '**', redirectTo: 'notfound', pathMatch: 'full' }
 ];
 
 export const PAGES_ROUTES = RouterModule.forChild(AppRouting);
