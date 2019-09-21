@@ -8,6 +8,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
+import APP_CONFIG from 'src/app/config';
 
 @Component({
   selector: 'app-notfound',
@@ -15,6 +16,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notfound.component.scss']
 })
 export class NotfoundComponent implements OnInit {
+  title = APP_CONFIG.Name;
+  year = new Date().getFullYear();
 
   constructor() { }
 
