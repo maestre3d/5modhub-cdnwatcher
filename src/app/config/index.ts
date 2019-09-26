@@ -8,5 +8,6 @@
  */
 
 export default {
-    Name: 'CDN Watcher'
+    Name: 'CDN Watcher',
+    API_URL: 'https://api.damascus-engineering.com/cdn'
 };

@@ -23,8 +23,16 @@ const AppRouting: Routes = [
                 loadChildren: () => import('src/app/pages/cdn/cdn.module').then(module => module.CdnModule)
             },
             {
+                path: 'file',
+                loadChildren: () => import('src/app/pages/file/file.module').then(module => module.FileModule)
+            },
+            {
                 path: 'iam',
                 loadChildren: () => import('src/app/pages/iam/iam.module').then(module => module.IamModule)
+            },
+            {
+                path: 'settings',
+                loadChildren: () => import('src/app/pages/settings/settings.module').then(module => module.SettingsModule)
             },
             {
                 path: 'notfound',

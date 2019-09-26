@@ -8,17 +8,43 @@
  */
 
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { Observable, Subject, of } from 'rxjs';
+import { map, takeUntil, catchError } from 'rxjs/operators';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+  private unsubscribe$ = new Subject<void>();
+
+  constructor( private authService: AuthService, private router: Router ) {
+  }
+
+  canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    return this.authService.verifyAuth()
+      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(map(isAuth => {
+        if ( isAuth ) {
+          if (state.url === '/signin' ) {
+            this.router.navigate(['/']);
+            return false;
+          }
+
+          return true;
+        } else {
+          if (state.url === '/signin' ) {
+            return true;
+          }
+
+          this.router.navigate(['/signin']);
+          return false;
+        }
+      }), catchError((err) => {
+        this.router.navigate(['/notfound']);
+        return of(false);
+      }));
   }
 
 }

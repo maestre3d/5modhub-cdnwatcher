@@ -8,9 +8,10 @@
  */
 
 import { Injectable } from '@angular/core';
+import { PagesModule } from 'src/app/pages/pages.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: PagesModule
 })
 export class AwsService {
 

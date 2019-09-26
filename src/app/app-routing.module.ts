@@ -14,18 +14,23 @@ import { AuthGuard } from './common/guards/auth/auth.guard';
 
 const routes: Routes = [
   {
+    path: 'notfound',
+    loadChildren: () => import('src/app/shared/notfound/notfound.module').then(module => module.NotfoundModule)
+  },
+  {
+    path: 'signin',
+    canActivate: [ AuthGuard ],
+    loadChildren: () => import('./shared/auth/auth.module').then(module => module.AuthModule)
+  },
+  {
     path: '',
     canActivate: [ AuthGuard ],
     loadChildren: () => import('./pages/pages.module').then(module => module.PagesModule)
   },
   {
-    path: 'notfound',
-    loadChildren: () => import('src/app/shared/notfound/notfound.module').then(module => module.NotfoundModule)
-  },
-  {
     path: '**',
-    pathMatch: 'full',
-    redirectTo: 'notfound'
+    redirectTo: 'notfound',
+    pathMatch: 'full'
   }
 ];
 
