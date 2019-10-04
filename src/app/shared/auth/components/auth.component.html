@@ -1,42 +1,47 @@
-<ng-container *ngIf="incorrectUserMessage !== null">
-    <span class="mat-error animated fadeIn" style="font-size: 90%;">{{incorrectUserMessage}}</span>
-</ng-container>
-<form  [formGroup]="signInGroup" id="signInForm">
-    <p>
-        <mat-form-field class="register-field" appearance="outline">
-            <mat-label>Username</mat-label>
-            <input matInput placeholder="Enter your username" [(ngModel)]="authModel.user" name="user" required
-            formControlName="userControl" [errorStateMatcher]="userMatcher"
-            >
-            <mat-error class="animated fadeIn" *ngIf="signInGroup.get('userControl').hasError('required')">
-                Username is <strong>required</strong>
-            </mat-error>
-            <mat-error class="animated fadeIn" *ngIf="signInGroup.get('userControl').hasError('pattern')">
-                Username must contain only alphanumerical and ('@, , -, _') characters
-            </mat-error>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field class="register-field" appearance="outline" id="passField">
-            <mat-label>Password</mat-label>
-            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="authModel.password" name="password" required
-            formControlName="passwordControl" [errorStateMatcher]="passwordMatcher">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-error class="animated fadeIn" *ngIf="signInGroup.get('passwordControl').hasError('required')">
-                Password is <strong>required</strong>
-            </mat-error>
-        </mat-form-field>
-    </p>
-    <p>
-        <button class="register-field" mat-raised-button color="primary" (click)="onAuth()" [disabled]="!signInGroup.valid">
-            <ng-container *ngIf="!isLoading; else loadingTemplate">
-                <span class="animated fadeIn fast">Sign In</span>
-            </ng-container>
-            <ng-template #loadingTemplate>
-                <mat-progress-bar class="animated fadeIn fast" style="margin: 18px 0;" mode="indeterminate"></mat-progress-bar>
-            </ng-template>                          
-        </button>
-    </p>
-</form>
+<div class="wrapper">
+    <div class="container mat-elevation-z8 mat-app-background">
+        <ng-container *ngIf="incorrectUserMessage !== null">
+            <span class="mat-error animated fadeIn" style="font-size: 90%;">{{incorrectUserMessage}}</span>
+        </ng-container>
+        <form  [formGroup]="signInGroup" id="signInForm" class="animated fadeIn fast">
+            <p>
+                <mat-form-field class="register-field" appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Enter your username" [(ngModel)]="authModel.user" name="user" required
+                    formControlName="userControl" [errorStateMatcher]="userMatcher"  tabindex="1"
+                    >
+                    <mat-error class="animated fadeIn" *ngIf="signInGroup.get('userControl').hasError('required')">
+                        <ng-container>Username is <strong>required</strong></ng-container>
+                    </mat-error>
+                    <mat-error class="animated fadeIn" *ngIf="signInGroup.get('userControl').hasError('pattern')">
+                        <ng-container>Username must contain only alphanumerical and ('@, , -, _') characters</ng-container>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field class="register-field" appearance="outline" id="passField">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="authModel.password" name="password" required
+                    formControlName="passwordControl" [errorStateMatcher]="passwordMatcher"  tabindex="2">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"  tabindex="4">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error class="animated fadeIn" *ngIf="signInGroup.get('passwordControl').hasError('required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+            <p>
+                <button class="register-field" mat-raised-button color="primary" (click)="onAuth()" [disabled]="!signInGroup.valid"  tabindex="3">
+                    <ng-container *ngIf="!isLoading; else loadingTemplate">
+                        <span class="animated fadeIn fast">Sign In</span>
+                    </ng-container>
+                    <ng-template #loadingTemplate>
+                        <mat-icon class="animated rotateIn loop">cached</mat-icon> <ng-container>Sign In</ng-container>
+                        
+                    </ng-template>                          
+                </button>
+            </p>
+        </form>
+    </div>
+</div>

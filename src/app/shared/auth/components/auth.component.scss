@@ -1,0 +1,31 @@
+@import 'src/assets/scss/theme.scss';
+
+.wrapper {
+    display: flex;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    width: 100%;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(to right, $primary , $third);
+
+    .container {
+        display: flex;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+
+        max-width: 500px;
+        text-align: center;
+        justify-content: center;
+
+        .mat-form-field {
+            width: 250px;
+            max-width: 420px;
+        }
+    }
+}

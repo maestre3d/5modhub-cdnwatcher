@@ -17,7 +17,7 @@ import { AuthService } from '../../services/auth/auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  private unsubscribe$ = new Subject<void>();
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor( private authService: AuthService, private router: Router ) {
   }

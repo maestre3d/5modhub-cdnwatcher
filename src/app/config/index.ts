@@ -8,6 +8,6 @@
  */
 
 export default {
-    Name: 'CDN Watcher',
+    Name: 'Private Cloud Watcher',
     API_URL: 'https://api.damascus-engineering.com/cdn'
 };

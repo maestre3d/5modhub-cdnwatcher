@@ -8,6 +8,7 @@
  */
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './root/pages.component';
+import { PrivilegesGuard } from '../common/guards/privileges.guard';
 
 const AppRouting: Routes = [
     {
@@ -20,6 +21,7 @@ const AppRouting: Routes = [
             },
             {
                 path: 'cdn',
+                canActivate: [PrivilegesGuard],
                 loadChildren: () => import('src/app/pages/cdn/cdn.module').then(module => module.CdnModule)
             },
             {
@@ -28,6 +30,7 @@ const AppRouting: Routes = [
             },
             {
                 path: 'iam',
+                canActivate: [PrivilegesGuard],
                 loadChildren: () => import('src/app/pages/iam/iam.module').then(module => module.IamModule)
             },
             {

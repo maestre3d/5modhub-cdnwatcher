@@ -10,7 +10,7 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { IAuthService } from 'src/app/core/auth/authservice.interface';
-import { Observable, Subscriber, Subject, throwError } from 'rxjs';
+import { Observable, Subscriber, Subject, throwError, EMPTY } from 'rxjs';
 import { IUser } from 'src/app/core/domain/models/user.interface';
 import { USERS } from '../../mocks/user.mock';
 import { UserService } from '../user/user.service';
@@ -28,7 +28,6 @@ export class AuthService implements IAuthService {
     // Get users from API
     return this.userService.getByUsername(usernamePayload).pipe(switchMap(user => {
         if (user && user.password === passwordPayload) {
-          console.log(user);
           return new Observable<IUser>((subscriber: Subscriber<any>) => {
             try {
               this.cookieService.set('credentials', JSON.stringify(user), 7);
@@ -40,6 +39,7 @@ export class AuthService implements IAuthService {
             }
           });
         }
+        return EMPTY;
       }
     ), catchError((err: any) => {
       return new Observable<any>((subscriber: Subscriber<any>) => {
@@ -57,11 +57,11 @@ export class AuthService implements IAuthService {
   }
 
   changePassword(userId: number, oldPassword: string, newPassword: string): Observable<boolean> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   forceChangePassword(userId: number, password: string): Observable<boolean> {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
   currentUser(): Observable<IUser> {

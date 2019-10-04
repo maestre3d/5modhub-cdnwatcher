@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         Material.MatChipsModule,
         Material.MatDialogModule,
         Material.MatDividerModule,
+        Material.MatMenuModule,
         Material.MatBadgeModule,
         Material.MatAutocompleteModule,
         Material.MatProgressSpinnerModule,

@@ -3,29 +3,62 @@
         <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
         <a routerLink="/" style="color: inherit;"><h1 class="app-name">{{title}}</h1></a>
         <div class="spacer"></div>
+        <div class="menu-container">
+            <mat-menu #appMenu="matMenu">
+            <ng-template matMenuContent>
+                <button mat-menu-item>
+                    <mat-icon class="material-icons-outlined">dialpad</mat-icon>
+                    <span>Settings</span>
+                </button>
+                <button mat-menu-item>
+                    <mat-icon class="material-icons-outlined">dialpad</mat-icon>
+                    <span>Menu</span>
+                </button>
+                <button mat-menu-item class="log-item" (click)="onLogOut()">
+                    <mat-icon class="material-icons-outlined log-item">exit_to_app</mat-icon>
+                    <span>Sign Out</span>
+                </button>
+            </ng-template>
+            </mat-menu>
+            
+            <button mat-button [matMenuTriggerFor]="appMenu" [ngClass]="{'mat-icon-button': mobileQuery.matches}">
+                <mat-icon [ngClass]="{'menu-trigger': !mobileQuery.matches}">account_circle</mat-icon>
+                <ng-container *ngIf="this.user && !mobileQuery.matches"><b>{{user.username}}</b></ng-container>
+            </button>
+        </div>
     </mat-toolbar>
 
     <mat-sidenav-container class="sidenav-container"
                             [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-        <mat-nav-list>
-            <a mat-list-item routerLink="/" class="item" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
-                <ng-container><mat-icon class="nav-icon material-icons-outlined">home_outline</mat-icon> Home</ng-container>
-            </a>
-            <a mat-list-item routerLink="/cdn" class="item" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
-                <ng-container><mat-icon class="nav-icon material-icons-outlined">cloud</mat-icon> CDN</ng-container>
-            </a>
-            <a mat-list-item routerLink="/file" class="item" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
-                <ng-container><mat-icon class="nav-icon material-icons-outlined">folder_shared</mat-icon> Files</ng-container>
-            </a>
-            <a mat-list-item routerLink="/iam" class="item" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
-                <ng-container><mat-icon class="nav-icon material-icons-outlined">supervised_user_circle</mat-icon> IAM</ng-container>
-            </a>
-            <a mat-list-item routerLink="/settings" class="item" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
-                <ng-container><mat-icon class="nav-icon material-icons-outlined">settings</mat-icon> Settings</ng-container>
-            </a>
-        </mat-nav-list>
+            <div class="nav-container">
+                <mat-nav-list style="overflow-x: hidden;">
+                    <a mat-list-item routerLink="/" class="item" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                        <ng-container><mat-icon class="nav-icon material-icons-outlined">home_outline</mat-icon> Home</ng-container>
+                    </a>
+                    <a mat-list-item routerLink="/cdn" class="item" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"
+                    *ngIf="this.user && (this.user.role === role[0] || this.user.role === role[1])">
+                        <ng-container><mat-icon class="nav-icon material-icons-outlined">cloud</mat-icon> Cloud</ng-container>
+                    </a>
+                    <a mat-list-item routerLink="/file" class="item" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                        <ng-container><mat-icon class="nav-icon material-icons-outlined">folder_shared</mat-icon> Files</ng-container>
+                    </a>
+                    <a mat-list-item routerLink="/iam" class="item" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"
+                    *ngIf="this.user && (this.user.role === role[0] || this.user.role === role[1])">
+                        <ng-container><mat-icon class="nav-icon material-icons-outlined">supervised_user_circle</mat-icon> IAM</ng-container>
+                    </a>
+                    <a mat-list-item routerLink="/settings" class="item" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                        <ng-container><mat-icon class="nav-icon material-icons-outlined">settings</mat-icon> Settings</ng-container>
+                    </a>
+                </mat-nav-list>
+                <div class="spacer-y"></div>
+                <mat-nav-list style="overflow-x: hidden;">
+                    <mat-list-item class="log-item" (click)="onLogOut()">
+                        <ng-container><mat-icon class="nav-icon material-icons-outlined">exit_to_app</mat-icon> Sign Out</ng-container>
+                    </mat-list-item>
+                </mat-nav-list>
+            </div>
         </mat-sidenav>
         <mat-sidenav-content>
             <router-outlet></router-outlet>

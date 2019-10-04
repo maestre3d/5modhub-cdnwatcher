@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { FileRoutingModule } from './file-routing.module';
 import { FileComponent } from './components/file.component';
@@ -9,7 +10,8 @@ import { FileComponent } from './components/file.component';
   declarations: [FileComponent],
   imports: [
     CommonModule,
-    FileRoutingModule
+    FileRoutingModule,
+    NgxSkeletonLoaderModule
   ]
 })
 export class FileModule { }

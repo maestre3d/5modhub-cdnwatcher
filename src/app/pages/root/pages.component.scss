@@ -32,21 +32,40 @@ h1.app-name {
     flex: 1 0 auto;
 }
 
-.item {
-    color: $secondary !important;
-}
+.nav-container {
+    height: 100%;
+    display: flex;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
 
-.nav-icon {
-    margin: 15px;
-}
+    flex-flow: column;
 
-.active-link {
-    color: $accent !important;
-    font-weight: 700;
+    .item {
+        color: $secondary !important;
+    }
+    
+    .nav-icon {
+        margin: 15px;
+    }
+    
+    .active-link {
+        color: $accent !important;
+        font-weight: 700;
+    }
 }
 
 a {
     h1 {
         font-family: 'Poppins', sans-serif !important;
     }
+}
+
+.log-item {
+    color: #fff !important;
+    background: $warn !important;
+}
+
+.menu-trigger {
+    margin: 0 5px 0 0;
 }

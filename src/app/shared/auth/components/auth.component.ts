@@ -50,28 +50,35 @@ export class AuthComponent implements OnInit {
   }
 
   onAuth(): void {
+    this.isLoading = true;
 
     this.authService.authenticate(this.authModel.user, this.authModel.password)
       .pipe(takeUntil(this.unsubscribe$)).pipe(switchMap(userVal => {
+        console.log(userVal);
         if (userVal !== null) {
           return this.authService.currentUser()
             .pipe(takeUntil(this.unsubscribe$));
         } else {
           console.log('Auth failed');
           this.incorrectUserMessage = 'User / Password are incorrect.';
+          this.isLoading = false;
           return EMPTY;
         }
       }), catchError((err: any) => {
+        console.log(err);
         this.incorrectUserMessage = 'User / Password are incorrect.';
+        this.isLoading = false;
         return EMPTY;
       })).subscribe(userDB => {
         if (userDB !== null) {
           this.user = userDB;
           this.incorrectUserMessage = null;
+          this.isLoading = false;
           this.router.navigate(['/']);
         } else {
           console.log('Auth failed');
           this.incorrectUserMessage = 'User / Password are incorrect.';
+          this.isLoading = false;
         }
       });
   }
