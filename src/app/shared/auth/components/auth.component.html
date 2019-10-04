@@ -1,13 +1,14 @@
 <div class="wrapper">
-    <div class="container mat-elevation-z8 mat-app-background">
-        <ng-container *ngIf="incorrectUserMessage !== null">
-            <span class="mat-error animated fadeIn" style="font-size: 90%;">{{incorrectUserMessage}}</span>
-        </ng-container>
-        <form  [formGroup]="signInGroup" id="signInForm" class="animated fadeIn fast">
+    <div class="spacer-y"></div>
+    <div class="container mat-elevation-z8 mat-app-background animated fadeIn fast">
+        <div class="title-container">
+            <mat-icon style="font-size: 4.5rem;">account_circle</mat-icon>
+        </div>
+        <form  [formGroup]="signInGroup" id="signInForm" class="animated fadeIn slow">
             <p>
                 <mat-form-field class="register-field" appearance="outline">
                     <mat-label>Username</mat-label>
-                    <input matInput placeholder="Enter your username" [(ngModel)]="authModel.user" name="user" required
+                    <input matInput placeholder="Enter your username" required
                     formControlName="userControl" [errorStateMatcher]="userMatcher"  tabindex="1"
                     >
                     <mat-error class="animated fadeIn" *ngIf="signInGroup.get('userControl').hasError('required')">
@@ -21,7 +22,7 @@
             <p>
                 <mat-form-field class="register-field" appearance="outline" id="passField">
                     <mat-label>Password</mat-label>
-                    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="authModel.password" name="password" required
+                    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required
                     formControlName="passwordControl" [errorStateMatcher]="passwordMatcher"  tabindex="2">
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"  tabindex="4">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -31,17 +32,26 @@
                     </mat-error>
                 </mat-form-field>
             </p>
+            <ng-container *ngIf="incorrectUserMessage !== null">
+                <span class="mat-error animated fadeIn" style="font-size: 90%; margin-top: -20px;">{{incorrectUserMessage}}</span>
+            </ng-container>
             <p>
-                <button class="register-field" mat-raised-button color="primary" (click)="onAuth()" [disabled]="!signInGroup.valid"  tabindex="3">
+                <button class="register-field" mat-raised-button color="primary" (click)="onAuth()" [disabled]="!signInGroup.valid || isLoading"  tabindex="3">
                     <ng-container *ngIf="!isLoading; else loadingTemplate">
                         <span class="animated fadeIn fast">Sign In</span>
                     </ng-container>
                     <ng-template #loadingTemplate>
-                        <mat-icon class="animated rotateIn loop">cached</mat-icon> <ng-container>Sign In</ng-container>
+                        <mat-icon class="rotating">cached</mat-icon> <ng-container>Sign In</ng-container>
                         
                     </ng-template>                          
                 </button>
             </p>
         </form>
+    </div>
+    <div class="spacer-y"></div>
+    <div class="footer">
+        <span><b>Private Cloud Watcher</b></span>
+        <br>
+        <span>Copyright &copy; 2019 Maestre3d. All rights reserved.</span>
     </div>
 </div>

@@ -39,7 +39,11 @@ export class AuthService implements IAuthService {
             }
           });
         }
-        return EMPTY;
+
+        return new Observable<any>((subscriber: Subscriber<any>) => {
+          subscriber.next(null);
+          subscriber.complete();
+        });
       }
     ), catchError((err: any) => {
       return new Observable<any>((subscriber: Subscriber<any>) => {

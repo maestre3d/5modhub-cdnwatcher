@@ -2,9 +2,8 @@
 @include mat-core();
 
 $app-primary: mat-palette($mat-blue, A700, A700, A700);
-$app-accent:  mat-palette($mat-orange, A400, A400, A700);
+$app-accent:  mat-palette($mat-pink, A400, A400, A700);
 $app-secondary: mat-palette($mat-blue-grey);
-$app-third: mat-palette($mat-pink);
 
 $app-warn: mat-palette($mat-red);
 
@@ -25,4 +24,3 @@ $primary: mat-color($app-primary);
 $accent: mat-color($app-accent);
 $secondary: mat-color($app-secondary);
 $warn: mat-color($app-warn);
-$third: mat-color($app-third);

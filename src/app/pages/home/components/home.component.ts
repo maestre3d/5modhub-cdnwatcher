@@ -12,7 +12,6 @@ export class HomeComponent implements OnInit {
   user: IUser;
 
   constructor() {
-    console.log(this.user);
   }
 
   ngOnInit() {

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationViewModel } from '../models/auth.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IUser } from 'src/app/core/domain/models/user.interface';
 import { ErrorStateMatcherHelper } from 'src/app/helpers/ui/errorstate.helper';
 import { AuthService } from 'src/app/common/services/auth/auth.service';
 import { Router } from '@angular/router';
-import { Subject, interval, empty, EMPTY } from 'rxjs';
-import { takeUntil, switchMap, mapTo, catchError } from 'rxjs/operators';
+import { Subject, EMPTY } from 'rxjs';
+import { takeUntil, switchMap, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-auth',
@@ -15,7 +14,6 @@ import { takeUntil, switchMap, mapTo, catchError } from 'rxjs/operators';
 })
 export class AuthComponent implements OnInit {
   // Two-Way model
-  authModel: AuthenticationViewModel;
   user: IUser;
 
   // One-Way props
@@ -43,7 +41,6 @@ export class AuthComponent implements OnInit {
   isLoading = false;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.authModel = new AuthenticationViewModel(null, null);
   }
 
   ngOnInit() {
@@ -52,21 +49,18 @@ export class AuthComponent implements OnInit {
   onAuth(): void {
     this.isLoading = true;
 
-    this.authService.authenticate(this.authModel.user, this.authModel.password)
+    this.authService.authenticate(this.signInGroup.get('userControl').value, this.signInGroup.get('passwordControl').value)
       .pipe(takeUntil(this.unsubscribe$)).pipe(switchMap(userVal => {
-        console.log(userVal);
         if (userVal !== null) {
           return this.authService.currentUser()
             .pipe(takeUntil(this.unsubscribe$));
         } else {
-          console.log('Auth failed');
-          this.incorrectUserMessage = 'User / Password are incorrect.';
+          this.incorrectUserMessage = 'User/Password is incorrect.';
           this.isLoading = false;
           return EMPTY;
         }
       }), catchError((err: any) => {
-        console.log(err);
-        this.incorrectUserMessage = 'User / Password are incorrect.';
+        this.incorrectUserMessage = 'User/Password is incorrect.';
         this.isLoading = false;
         return EMPTY;
       })).subscribe(userDB => {
@@ -76,8 +70,7 @@ export class AuthComponent implements OnInit {
           this.isLoading = false;
           this.router.navigate(['/']);
         } else {
-          console.log('Auth failed');
-          this.incorrectUserMessage = 'User / Password are incorrect.';
+          this.incorrectUserMessage = 'User/Password is incorrect.';
           this.isLoading = false;
         }
       });
