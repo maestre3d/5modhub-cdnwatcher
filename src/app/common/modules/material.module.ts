@@ -33,6 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         Material.MatTabsModule,
         Material.MatSidenavModule,
         Material.MatSnackBarModule,
+        Material.MatSlideToggleModule,
         LayoutModule,
         FormsModule,
         ReactiveFormsModule,

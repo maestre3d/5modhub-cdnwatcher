@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" [ngClass]="{'dark-theme': isDarkTheme$ | async}">
     <div class="spacer-y"></div>
     <div class="container mat-elevation-z8 mat-app-background animated fadeIn fast">
         <div class="title-container">

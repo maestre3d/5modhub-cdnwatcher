@@ -70,8 +70,15 @@ export class AuthService implements IAuthService {
 
   currentUser(): Observable<IUser> {
     return new Observable<IUser>((subscriber: Subscriber<any>) => {
-      subscriber.next(JSON.parse(this.cookieService.get('credentials')));
-      subscriber.complete();
+      try {
+        const user: IUser = JSON.parse(this.cookieService.get('credentials'));
+        subscriber.next(user ? user : null);
+        subscriber.complete();
+      } catch (error) {
+        subscriber.error(error);
+        subscriber.complete();
+      }
+
     });
   }
 

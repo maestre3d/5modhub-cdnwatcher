@@ -1,6 +1,17 @@
-<div class="container">
+<div class="container animated fadeIn fast">
     <div class="header"><h1>Settings</h1></div>
     <div class="main-content">
-        
+        <div class="avatar">
+            <div class="img-avatar"><img [src]="user.image" alt="user.username's picture" *ngIf="user" style="border-radius: 100%;"></div>
+            <div class="info-avatar"></div>
+        </div>
+        <h3>Extras</h3>
+        <mat-divider></mat-divider>
+        <div class="items mat-elevation-z8">
+            <div class="item">
+                <div>{{user.username}}</div>
+                <div><mat-slide-toggle [checked]="isDarkTheme$ | async" (change)="toggleDarkTheme($event.checked)"></mat-slide-toggle></div>
+            </div>
+        </div>
     </div>
 </div>

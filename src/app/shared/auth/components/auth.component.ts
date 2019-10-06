@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IUser } from 'src/app/core/domain/models/user.interface';
 import { ErrorStateMatcherHelper } from 'src/app/helpers/ui/errorstate.helper';
 import { AuthService } from 'src/app/common/services/auth/auth.service';
 import { Router } from '@angular/router';
-import { Subject, EMPTY } from 'rxjs';
+import { Subject, EMPTY, Observable } from 'rxjs';
 import { takeUntil, switchMap, catchError } from 'rxjs/operators';
+import { ThemeService } from 'src/app/common/services/theme/theme.service';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit, AfterViewInit {
+  // Theme
+  isDarkTheme$: Observable<boolean>;
   // Two-Way model
   user: IUser;
 
@@ -40,10 +43,17 @@ export class AuthComponent implements OnInit {
   hide = true;
   isLoading = false;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private themeService: ThemeService) {
   }
 
   ngOnInit() {
+    this.isDarkTheme$ = this.themeService.isDarkTheme$;
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.themeService.getConfig();
+    }, 1);
   }
 
   onAuth(): void {
@@ -67,7 +77,6 @@ export class AuthComponent implements OnInit {
         if (userDB !== null) {
           this.user = userDB;
           this.incorrectUserMessage = null;
-          this.isLoading = false;
           this.router.navigate(['/']);
         } else {
           this.incorrectUserMessage = 'User/Password is incorrect.';
