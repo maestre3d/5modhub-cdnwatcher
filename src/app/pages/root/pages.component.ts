@@ -56,7 +56,6 @@ export class PagesComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }, (err: Error) => {
       this.user = null;
-      this.openSnackBar('Couldn\'t get the current session.');
     });
 
     if (!this.mobileQuery.matches) {

@@ -8,7 +8,7 @@
  */
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './root/pages.component';
-import { PrivilegesGuard } from '../common/guards/privileges.guard';
+import { PrivilegesGuard } from '../common/guards/privileges/privileges.guard';
 
 const AppRouting: Routes = [
     {

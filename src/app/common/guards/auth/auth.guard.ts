@@ -27,23 +27,23 @@ export class AuthGuard implements CanActivate {
       .pipe(takeUntil(this.unsubscribe$))
       .pipe(map(isAuth => {
         if ( isAuth ) {
-          if (state.url === '/signin' ) {
+          if (next.routeConfig.path === 'signin' ) {
             this.router.navigate(['/']);
             return false;
           }
 
           return true;
         } else {
-          if (state.url === '/signin' ) {
+          if ( next.routeConfig.path === 'signin' ) {
             return true;
           }
 
-          this.router.navigate(['/signin']);
+          this.router.navigate(['/signin'], { queryParams: { redirectUri: state.url} });
           return false;
         }
       }), catchError((err) => {
         this.router.navigate(['/notfound']);
-        return of(false);
+        return of(true);
       }));
   }
 

@@ -20,7 +20,6 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = APP_CONFIG.Name;
-  isDarkTheme$: Observable<boolean>;
   subject$: Subject<void> = new Subject<void>();
 
   constructor(private themeService: ThemeService) {
@@ -32,8 +31,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.isDarkTheme$ = this.themeService.isDarkTheme$;
-    this.themeService.getConfig();
   }
 
   ngOnDestroy(): void {

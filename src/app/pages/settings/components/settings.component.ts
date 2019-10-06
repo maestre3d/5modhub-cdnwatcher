@@ -13,7 +13,6 @@ import { ThemeService } from 'src/app/common/services/theme/theme.service';
 export class SettingsComponent implements OnInit, OnDestroy, AfterViewInit {
   user: IUser;
   isDarkTheme$: Observable<boolean>;
-  user$: Observable<IUser>;
 
   subject$: Subject<void> = new Subject<void>();
 
@@ -26,7 +25,6 @@ export class SettingsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
-    this.user$ = this.authService.currentUser();
   }
 
   ngAfterViewInit(): void {

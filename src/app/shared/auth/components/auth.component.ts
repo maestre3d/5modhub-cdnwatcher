@@ -3,9 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IUser } from 'src/app/core/domain/models/user.interface';
 import { ErrorStateMatcherHelper } from 'src/app/helpers/ui/errorstate.helper';
 import { AuthService } from 'src/app/common/services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subject, EMPTY, Observable } from 'rxjs';
-import { takeUntil, switchMap, catchError } from 'rxjs/operators';
+import { takeUntil, switchMap, catchError, map } from 'rxjs/operators';
 import { ThemeService } from 'src/app/common/services/theme/theme.service';
 
 @Component({
@@ -43,11 +43,19 @@ export class AuthComponent implements OnInit, AfterViewInit {
   hide = true;
   isLoading = false;
 
-  constructor(private authService: AuthService, private router: Router, private themeService: ThemeService) {
+  redirectUri: string;
+
+  constructor(private authService: AuthService, private router: Router, private themeService: ThemeService,
+              private route: ActivatedRoute ) {
   }
 
   ngOnInit() {
     this.isDarkTheme$ = this.themeService.isDarkTheme$;
+    this.route.queryParams.pipe(map(query => query.redirectUri)).pipe(takeUntil(this.unsubscribe$))
+        .subscribe((query: any) => {
+          this.redirectUri = query;
+          console.log(query);
+        });
   }
 
   ngAfterViewInit(): void {
@@ -77,7 +85,11 @@ export class AuthComponent implements OnInit, AfterViewInit {
         if (userDB !== null) {
           this.user = userDB;
           this.incorrectUserMessage = null;
-          this.router.navigate(['/']);
+          if ( this.redirectUri ) {
+            this.router.navigate([this.redirectUri]);
+          } else {
+            this.router.navigate(['/']);
+          }
         } else {
           this.incorrectUserMessage = 'User/Password is incorrect.';
           this.isLoading = false;
