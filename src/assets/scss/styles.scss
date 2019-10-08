@@ -39,7 +39,8 @@ a { text-decoration: none; }
 
 /* Material Design replacement */
 
-.mat-list-item, .mat-button, .mat-toolbar > *, .mat-card > * { font-family: 'Poppins', sans-serif !important; }
+.mat-list-item, .mat-button, .mat-flat-button, .mat-raised-button, .mat-toolbar > *, .mat-card > *,
+.mat-form-field, .mat-menu-item { font-family: 'Poppins', sans-serif !important; }
 
 .material-icons-outlined,
 .material-icons.material-icons--outlined,

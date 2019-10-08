@@ -9,6 +9,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import APP_CONFIG from 'src/app/config';
+import { ThemeService } from 'src/app/common/services/theme/theme.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-notfound',
@@ -18,8 +20,11 @@ import APP_CONFIG from 'src/app/config';
 export class NotfoundComponent implements OnInit {
   title = APP_CONFIG.Name;
   year = new Date().getFullYear();
+  isDarkTheme$: Observable<boolean>;
 
-  constructor() { }
+  constructor(private themeService: ThemeService) {
+    this.isDarkTheme$ = this.themeService.isDarkTheme$;
+  }
 
   ngOnInit() {
   }

@@ -5,8 +5,9 @@ import { ErrorStateMatcherHelper } from 'src/app/helpers/ui/errorstate.helper';
 import { AuthService } from 'src/app/common/services/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject, EMPTY, Observable } from 'rxjs';
-import { takeUntil, switchMap, catchError, map } from 'rxjs/operators';
+import { takeUntil, switchMap, catchError } from 'rxjs/operators';
 import { ThemeService } from 'src/app/common/services/theme/theme.service';
+import APP_CONFIG from 'src/app/config';
 
 @Component({
   selector: 'app-auth',
@@ -42,6 +43,8 @@ export class AuthComponent implements OnInit, AfterViewInit {
   // UI
   hide = true;
   isLoading = false;
+  title = APP_CONFIG.Name;
+  year = new Date().getFullYear();
 
   redirectUri: string;
 
@@ -51,10 +54,9 @@ export class AuthComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.isDarkTheme$ = this.themeService.isDarkTheme$;
-    this.route.queryParams.pipe(map(query => query.redirectUri)).pipe(takeUntil(this.unsubscribe$))
+    this.route.queryParams.pipe(takeUntil(this.unsubscribe$))
         .subscribe((query: any) => {
-          this.redirectUri = query;
-          console.log(query);
+          this.redirectUri = query.redirectUri;
         });
   }
 
