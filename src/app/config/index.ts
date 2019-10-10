@@ -9,5 +9,6 @@
 
 export default {
     Name: 'Private Cloud Watcher',
+    Company: 'damascus',
     API_URL: 'https://api.damascus-engineering.com/cdn'
 };

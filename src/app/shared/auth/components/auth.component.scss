@@ -1,6 +1,8 @@
 @import 'src/assets/scss/theme.scss';
 @include mat-core();
 
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+
 .wrapper {
     display: flex;
     display: -moz-box;
@@ -14,6 +16,25 @@
     align-items: center;
 
     background: linear-gradient(to right, $primary , mat-color(mat-palette($mat-pink)));
+
+    .brand-container {
+        color: #fff;
+        margin-bottom: 15px;
+
+        .brand {
+            display: flex;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+
+            align-items: center;
+            font-size: xx-large;
+
+            * {
+                margin: 1px;
+            }
+        }
+    }
 
     .container {
         display: flex;

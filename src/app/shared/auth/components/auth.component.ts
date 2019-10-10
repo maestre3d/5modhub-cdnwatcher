@@ -44,6 +44,7 @@ export class AuthComponent implements OnInit, AfterViewInit {
   hide = true;
   isLoading = false;
   title = APP_CONFIG.Name;
+  company = APP_CONFIG.Company;
   year = new Date().getFullYear();
 
   redirectUri: string;
